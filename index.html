@@ -1,103 +1,54 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flip Card - Renzxz</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #000;
-            margin: 0;
-        }
-        .card-container {
-            perspective: 1000px;
-        }
-        .card {
-            width: 300px;
-            height: 200px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-        .card-container:hover .card {
-            transform: rotateY(180deg);
-        }
-        .card-face {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            backface-visibility: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            border-radius: 10px;
-            color: white;
-            transition: background 1s;
-        }
-        .front {
-            background: linear-gradient(45deg, red, yellow, green, cyan, blue, magenta);
-            background-size: 400% 400%;
-            animation: gradientAnimation 5s infinite alternate;
-        }
-        .back {
-            background: linear-gradient(45deg, magenta, blue, cyan, green, yellow, red);
-            background-size: 400% 400%;
-            animation: gradientAnimation 5s infinite alternate;
-            transform: rotateY(180deg);
-        }
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Live Chat Renzxz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #000;
+      overflow: hidden;
+    }
+    #fullChat {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+    }
+  </style>
 </head>
 <body>
 
-<div class="card-container">
-    <div class="card">
-        <div class="card-face front">
-            Renzxz<br>On Hosting 2023
-        </div>
-        <div class="card-face back">
-            Kartu ini adalah untuk live chat
-        </div>
-    </div>
-</div>
-
 <!-- Begin of Chaport Live Chat code -->
 <script type="text/javascript">
-(function(w,d,v3){
+  (function(w,d,v3){
     w.chaportConfig = {
-        appId : '67c58a52dc45f0b73cc3dd93'
+      appId : '67c58a52dc45f0b73cc3dd93',
+      autoOpen: true
     };
-
-    if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){
-        v3._q.push(arguments)
-    };v3.on=function(e,fn){
-        if(!v3._l[e])v3._l[e]=[];
-        v3._l[e].push(fn)
-    };
+    if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};
+    v3.q=function(){v3._q.push(arguments)};
+    v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};
     var s=d.createElement('script');
-    s.type='text/javascript';
-    s.async=true;
+    s.type='text/javascript';s.async=true;
     s.src='https://app.chaport.com/javascripts/insert.js';
     var ss=d.getElementsByTagName('script')[0];
     ss.parentNode.insertBefore(s,ss);
-})(window, document);
+  })(window, document);
 
-window.chaport = window.chaport || {};
-chaport.on('ready', function() {
-    chaport.open(); // Auto open live chat
-});
+  // Force fullscreen after load
+  chaport && chaport.on('ready', function() {
+    setTimeout(function(){
+      const widget = document.querySelector('.chaport-launcher');
+      if (widget) widget.style.display = 'none';
+      chaport.open();
+    }, 1000);
+  });
 </script>
 <!-- End of Chaport Live Chat code -->
 
